@@ -43,6 +43,7 @@ public class BaiduLocation extends CordovaPlugin {
                 json.put("latitude", location.getLatitude());
                 json.put("lontitude", location.getLongitude());
                 json.put("radius", location.getRadius());
+                json.put("address", location.getAddress().address);
 
                 StringBuilder sb = new StringBuilder(256);
                 sb.append("time : ");
@@ -55,7 +56,7 @@ public class BaiduLocation extends CordovaPlugin {
                 sb.append(location.getLongitude());
                 sb.append("\nradius : ");
                 sb.append(location.getRadius());
-                if (location.getLocType() == BDLocation.TypeGpsLocation){// GPS定位结果
+                if (location.getLocType() == BDLocation.TypeGpsLocation) {// GPS定位结果
                     sb.append("\nspeed : ");
                     sb.append(location.getSpeed());// 单位：公里每小时
                     sb.append("\nsatellite : ");
@@ -75,7 +76,7 @@ public class BaiduLocation extends CordovaPlugin {
                     json.put("direction", location.getDirection());
                     json.put("addr", location.getAddrStr());
                     json.put("describe", "gps定位成功");
-                } else if (location.getLocType() == BDLocation.TypeNetWorkLocation){// 网络定位结果
+                } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
                     sb.append("\naddr : ");
                     sb.append(location.getAddrStr());
                     //运营商信息
@@ -108,17 +109,17 @@ public class BaiduLocation extends CordovaPlugin {
                     sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
                     json.put("describe", "无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
                 }
-    //            sb.append("\nlocationdescribe : ");
-    //            sb.append(location.getLocationDescribe());// 位置语义化信息
-    //            List<Poi> list = location.getPoiList();// POI数据
-    //            if (list != null) {
-    //                sb.append("\npoilist size = : ");
-    //                sb.append(list.size());
-    //                for (Poi p : list) {
-    //                    sb.append("\npoi= : ");
-    //                    sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
-    //                }
-    //            }
+                //            sb.append("\nlocationdescribe : ");
+                //            sb.append(location.getLocationDescribe());// 位置语义化信息
+                //            List<Poi> list = location.getPoiList();// POI数据
+                //            if (list != null) {
+                //                sb.append("\npoilist size = : ");
+                //                sb.append(list.size());
+                //                for (Poi p : list) {
+                //                    sb.append("\npoi= : ");
+                //                    sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
+                //                }
+                //            }
                 LOG.i(LOG_TAG, sb.toString());
 
                 PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json);
@@ -180,7 +181,7 @@ public class BaiduLocation extends CordovaPlugin {
         // 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
         // option.setScanSpan(0);
         // 可选，设置是否需要地址信息，默认不需要
-        // option.setIsNeedAddress(false);
+        option.setIsNeedAddress(true);
         // 可选，默认false,设置是否使用gps
         option.setOpenGps(true);
         // 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
