@@ -1,4 +1,4 @@
-package com.dqc.plugins.baidu;
+package com.qdc.plugins.baidu;
 
 
 import android.Manifest;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 public class AndroidPermissonUtils {
-    
+
     //注意，这里没有final
     private static AndroidPermissonUtils single = null;
     public static final int SDK_PERMISSION_REQUEST = 127;
