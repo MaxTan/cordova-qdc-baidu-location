@@ -48,6 +48,7 @@
     </config-file>
 
     <source-file src="src/android/BaiduLocation.java" target-dir="src/com/qdc/plugins/baidu" />
+    <source-file src="src/android/AndroidPermissonUtils.java" target-dir="src/com/qdc/plugins/baidu" />
     <source-file src="libs/android/armeabi/liblocSDK6a.so" target-dir="libs/armeabi" />
     <source-file src="libs/android/armeabi/liblocSDK6a.so" target-dir="libs/armeabi-v7a" />
     <source-file src="libs/android/BaiduLBS_Android.jar" target-dir="libs" />

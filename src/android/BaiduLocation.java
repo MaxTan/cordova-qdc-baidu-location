@@ -144,7 +144,7 @@ public class BaiduLocation extends CordovaPlugin {
     @Override
     public boolean execute(String action, final JSONArray args, CallbackContext callbackContext) throws JSONException {
         LOG.d(LOG_TAG, "BaiduPush#execute");
-
+        AndroidPermissonUtilss.getInstance().getPersimmions(this.cordova.getActivity());
         boolean ret = false;
 
         if ("getCurrentPosition".equalsIgnoreCase(action)) {
